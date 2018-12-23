@@ -1,7 +1,7 @@
 <?php
-$dbUser = "cse383";
-$dbpassword = "HoABBHrBfXgVwMSz";
-$mysqli = mysqli_connect("localhost", $dbUser, $dbpassword,"cse383");
+$dbUser = "[redacted]";
+$dbpassword = "[redacted]";
+$mysqli = mysqli_connect("[redacted]", $dbUser, $dbpassword,"[redacted]");
 if (mysqli_connect_errno($mysqli)) {
   	echo "Failed to connect to MySQL: " . mysqli_connect_error();
       	echo "Failed to connect to MySQL: " . mysqli_connect_error();
