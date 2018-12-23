@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!-- Benjamin Bowser 11-4 Assignment -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Linux version 5.4.0">
+  <title>Form</title>
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <link rel="stylesheet" href=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src=
+  "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- styles, this style hides the error panel if there is no text in it-->
+
+  <style>
+      div#error:empty { display: none;}
+  </style>
+  <script src="script.js"></script>
+  
+</head>
+<body>
+  <div class="container-fluid">
+    <h1>Form example</h1>
+    <div id="formDiv" class="container-fluid center-block">
+      <div id="error" class="alert alert-danger" role="alert">
+      </div>
+      <form method="post" action=
+      "/~campbest/cse383/forms1/form-ajax.php">
+        <div class="form-group">
+          <label for="user">User:</label> <input type="text" name=
+          "user" value="DEFAULT INFORMATION" class="form-control"
+          id="user">
+          <div class="form-error alert alert-danger" id=
+          "userError">Required Field</div>
+        </div>
+        <div class="form-group">
+          <label for="affiliation">Affiliation</label>
+          <select name="affiliation" class="form-control" id=
+          "affiliation">
+            <!-- this is the default option and is blank. the user must make a selection-->
+            <option value="">
+            </option>
+            <option value="student">
+              Student
+            </option>
+            <option value="faculty">
+              Faculty
+            </option>
+            <option value="other">
+              Other
+            </option>
+          </select>
+          <div class="form-error alert alert-danger" id=
+          "affiliationError">Required Field</div>
+        </div>
+        <div class="form-group">
+          <label for="comment">Comment</label> 
+          <textarea name="comment" rows="5" cols="40" class=
+          "form-control" id="comment"></textarea>
+          <div class="form-error alert alert-danger" id=
+          "commentError">Required Field</div>
+        </div>
+        <div class="form-group">
+          <label for="car">What type of car do you drive?</label>
+          <input type="text" name="car" class="form-control" id=
+          "car">
+          <div class="form-error alert alert-danger" id="carError">
+          Required Field</div>
+        </div>
+        <div class="form-group">
+          <label for="color">My favorite color group</label>
+          <select name="color" class="form-control" id="color">
+            <!-- this is the default option and is blank. the user must make a selection-->
+            <option value="">
+            </option>
+            <option value="bright">
+              Bright
+            </option>
+            <option value="blue">
+              Blue
+            </option>
+            <option value="red">
+              Red
+            </option>
+            <option value="darks">
+              Darks
+            </option>
+            <option value="eclectic">
+              Eclectic
+            </option>
+            <option value="other">
+              Other
+            </option>
+          </select>
+          <div class="form-error alert alert-danger" id=
+          "ColorError">Required Field</div>
+        </div>
+        <div class="form-group">
+          <input type="submit" name="submit" value="Submit" class=
+          "form-control">
+        </div>
+      </form>
+
+	  <div id="table">
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th scope="col">User</th>
+              <th scope="col">Affiliation</th>
+              <th scope="col">Comment</th>
+              <th scope="col">Car</th>
+              <th scope="col">Color</th>
+              <th scope="col">Timestamp</th>
+            </tr>
+          </thead>
+          <tbody id="tableData"></tbody>
+        </table>
+	</div>
+	  <div class="form-group">
+          <button type="button" id="reset" class="form-control" onclick="resetFormData()">Reset</button>
+      </div>
+    </div><!-- end div id=formDiv-->
+  </div><!-- div class="container-fluid-->
+</body>
+</html>

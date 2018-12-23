@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!-- Scott Campbell form example -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Linux version 5.4.0">
+  <title>Form</title>
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <link rel="stylesheet" href=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <script src=
+  "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+      //check if user entered text in the user box
+    function myCheckSubmit(evt) {
+      var userBox = document.getElementById("user");
+      var userData = userBox.value;
+	  
+	  var commentBox = document.getElementById("comment");
+      var commentData = commentBox.value;
+	  
+	  var carBox = document.getElementById("cars");
+      var carData = commentBox.value;
+	  
+      console.log(userData);
+      if (userData === "DEFAULT INFORMATION") {
+        var error = document.getElementById("error");
+        error.innerHTML=error.innerHTML + "<br>" + "You must enter information into the User field";
+        return false;     //stop form from processing
+      }
+	  if (userData.length < 3 || commentData.length < 3 || carData.length < 3) {
+		var error = document.getElementById("error");
+        error.innerHTML=error.innerHTML + "<br>" + "All fields must have at least 3 characters.";
+		return false;
+}
+
+      return true;
+
+    }
+    </script>
+    <!-- styles, this style hides the error panel if there is no text in it-->
+    <style>
+      div#error:empty { display: none;}
+    </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <h1>Benjamin Bowser - 10/17 In-Class Assignment</h1>
+    <div id="formDiv" class="container-fluid center-block">
+    <div id="error" class="alert alert-danger" role="alert"></div>
+    <form method="post" action="/~campbest/cse383/forms1/form-inclass.php" onsubmit="return myCheckSubmit()">
+      <div class="form-group">
+        <label for="user">User:</label> <input type="text"
+        name="user" value="DEFAULT INFORMATION" class=
+        "form-control" id="user">
+      </div>
+      <div class="form-group">
+        <label for="affiliation">Affiliation</label> <select name="affiliation" class=
+        "form-control" id="affiliation">
+          <option value="student">
+            Student
+          </option>
+          <option value="faculty">
+            Faculty 
+          </option>
+          <option value="other">
+           Other 
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+      <label for="comment">Comment</label>
+      <textarea name="comment" rows="5" cols="40" class="form-control" id="comment"></textarea>
+      </div>
+	  <div class="form-group">
+		  <label for="comment">Car</label>
+		  <textarea name="car" rows="1" cols="40" class="form-control" id="cars"></textarea>
+	  </div> 
+	  
+	  <div class="form-group">
+	  <label for="affiliation">My favorite colors are:</label> <select name="colors" class=
+        "form-control" id="colors">
+          <option value="bright">
+            Bright
+          </option>
+          <option value="blue">
+            Blue 
+          </option>
+          <option value="red">
+           Reds
+          </option>
+		  <option value="darks">
+           Dark Colors 
+	   </option>
+	   <option value="eclectic">
+           Eclectic 
+	   </option>
+	   <option value="other">
+           Other 
+	   </option>
+	  </select>
+  </div>
+	  <div>
+		<script>
+		var i;
+		for (i = 0; i < 20; i++) { 
+		var letter = String.fromCharCode(65+Math.floor(Math.random() * 26))
+		document.write(letter);
+		}
+		</script>
+	  </div>
+	  
+      <div class="form-group">
+        <input type="submit" name="submit" value="Submit" class="form-control">
+      </div>
+	  <div class="form-group">
+        <input type="button" name="clear" value="Reset" class="form-control"
+		onclick="this.form.reset();"
+      </div>
+	  
+
+	  
+    </form>
+    </div> <!-- end div id=formDiv-->
+	<div> <!-- Javascript area -->
+		<script>
+		var i;
+		for (i = 0; i < 10; i++) { 
+			var string = "Hello world!"
+			var color = "#" + ((1<<24) * Math.random()|0).toString(16);
+			var colorized = string.fontcolor(color);
+			document.write(colorized + " ");
+		}
+		</script>
+	</div>
+	
+	<div style="position: relative; width: 200px; height: 50px">
+		<div id="icons" style="position: absolute;">
+			  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		</div>
+	</div>
+	
+	 <script>
+		var timer = setTimeout(iconMover, 3000);
+
+		function iconMover(){
+			var icon = document.getElementById("icons");
+			var num = setInterval(motion, 5);
+			var left = false;
+			var pos = 0;
+			function motion(){
+				if (pos == 200){
+					icon.style.backgroundColor = "red";	
+					left = true;
+				}
+				if (pos == 0) {
+					icon.style.backgroundColor = "blue";
+					left = false;
+				}
+					if (left == false) {
+						pos++;
+						icon.style.left = pos + 'px';
+					}
+					else {
+						pos--;
+						icon.style.left = pos + 'px';
+					}
+			}
+		}
+	    </script>
+  </div><!-- div class="container-fluid-->
+</body>
+</html>

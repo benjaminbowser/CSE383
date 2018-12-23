@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!-- Benjamin Bowser 10-14 Assignment -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Linux version 5.4.0">
+  <title>Form</title>
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <link rel="stylesheet" href=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src=
+  "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- styles, this style hides the error panel if there is no text in it-->
+
+  <style>
+      div#error:empty { display: none;}
+  </style>
+</head>
+<body>
+<script>
+<!--Begin script-->
+$(document).ready(function(){
+			<!-- Call each function -->
+			$("#user").change(verifyUser);
+			$("#affiliation").change(verifyAffiliation);
+			$("#comment").change(verifyComment);
+			$("#car").change(verifyCar);
+		    $("#color").change(verifyColor);
+
+			<!-- Verify all fields are valid before allowing a submission-->
+			$("form").submit(function(){
+				if (verifyUser() == false || verifyAffiliation() == false ||
+					verifyComment() == false || verifyCar() == false || verifyColor() == false){
+						$("#error").html("This submssion has errors.");
+						return false;
+				}
+			});
+		});
+		
+		<!-- Verify the user field-->
+		function verifyUser(){
+			var user = document.getElementById("user");
+			var userVal = user.value;
+			if (userVal.length < 3 || userVal === ""){
+				$("#userError").html("User must be longer than 3 characters"); 
+				return false;
+			}
+			else {
+				$("#userError").html("Entry Valid");
+				return true;
+			}
+		}
+
+		<!-- Verify the affiliation field-->
+		function verifyAffiliation(){
+			if ($("#affiliation").val() === ""){
+				$("#affiliationError").html("Must select an affiliation");
+				return false;
+			}
+			else {
+				$("#affiliationError").html("Entry Valid");
+				return true;
+			}
+		}
+		
+		<!-- Verify the comment field-->
+		function verifyComment(){
+			var delim = /[<>]/g;
+			var commentId = document.getElementById("comment");
+			var commentVal = commentId.value;
+			var wordCount = commentVal.split(" ").length - 1;
+			var check = delim.test(commentVal);
+			if (check == true){
+				$("#commentError").html("HTML tags are not permitted.");
+				return false;
+			}
+			else if(commentVal == "" || wordCount < 2){
+				$("#commentError").html("Comment must be longer than 3 words");
+				return false;
+			}
+			else {
+				$("#commentError").html("Entry Valid");
+				return true;
+			}
+		}
+
+		<!-- Verify the car field-->
+		function verifyCar(){
+			var carId = document.getElementById("car");
+			var carVal = carId.value;
+			if (carVal === ""){
+				$("#carError").html("Must enter a car");
+				return false;
+			}
+			else {
+				$("#carError").html("Entry Valid");
+				return true;
+			}
+		}
+		
+		<!-- Verify the color field-->
+		function verifyColor(){
+			if ($("#color").val() === ""){
+				$("#colorError").html("Must select a color");
+				return false;
+			}
+			else {
+				$("#colorError").html("Entry Valid");
+				return true;
+			}
+		}
+</script>
+
+  <div class="container-fluid">
+    <h1>Form example</h1>
+    <div id="formDiv" class="container-fluid center-block">
+      <div id="error" class="alert alert-danger" role="alert">
+      </div>
+      <form method="post" action=
+      "/~campbest/cse383/forms1/form-inclass.php">
+        <div class="form-group">
+          <label for="user">User:</label> <input type="text" name=
+          "user" value="DEFAULT INFORMATION" class="form-control"
+          id="user">
+          <div class="form-error alert alert-danger" id=
+          "userError">Required Field</div>
+        </div>
+        <div class="form-group">
+          <label for="affiliation">Affiliation</label>
+          <select name="affiliation" class="form-control" id=
+          "affiliation">
+            <!-- this is the default option and is blank. the user must make a selection-->
+            <option value="">
+            </option>
+            <option value="student">
+              Student
+            </option>
+            <option value="faculty">
+              Faculty
+            </option>
+            <option value="other">
+              Other
+            </option>
+          </select>
+          <div class="form-error alert alert-danger" id=
+          "affiliationError">Required Field</div>
+        </div>
+        <div class="form-group">
+          <label for="comment">Comment</label> 
+          <textarea name="comment" rows="5" cols="40" class=
+          "form-control" id="comment"></textarea>
+          <div class="form-error alert alert-danger" id=
+          "commentError">Required Field</div>
+        </div>
+        <div class="form-group">
+          <label for="car">What type of car do you drive?</label>
+          <input type="text" name="car" class="form-control" id=
+          "car">
+          <div class="form-error alert alert-danger" id="carError">
+          Required Field</div>
+        </div>
+        <div class="form-group">
+          <label for="color">My favorite color group</label>
+          <select name="color" class="form-control" id="color">
+            <!-- this is the default option and is blank. the user must make a selection-->
+            <option value="">
+            </option>
+            <option value="bright">
+              Bright
+            </option>
+            <option value="blue">
+              Blue
+            </option>
+            <option value="red">
+              Red
+            </option>
+            <option value="darks">
+              Darks
+            </option>
+            <option value="eclectic">
+              Eclectic
+            </option>
+            <option value="other">
+              Other
+            </option>
+          </select>
+          <div class="form-error alert alert-danger" id=
+          "ColorError">Required Field</div>
+        </div>
+        <div class="form-group">
+          <input type="submit" name="submit" value="Submit" class=
+          "form-control">
+        </div>
+      </form>
+    </div><!-- end div id=formDiv-->
+  </div><!-- div class="container-fluid-->
+</body>
+</html>
